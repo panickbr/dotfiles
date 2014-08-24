@@ -73,27 +73,24 @@ export PATH="/home/bruno/.rvm/gems/ruby-2.1.2/bin:/home/bruno/.rvm/gems/ruby-2.1
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
-# Base16 Shell
-#BASE16_SCHEME="default"
-#BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
-#[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 # RVM USE
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-source ~/.zsh-autosuggestions/autosuggestions.zsh
 
+#ZSH AUTOSUGGESTIONS
+source ~/.zsh-autosuggestions/autosuggestions.zsh
 # Enable autosuggestions automatically
 zle-line-init() {
     zle autosuggest-start
 }
 zle -N zle-line-init
-
 # use ctrl+t to toggle autosuggestions(hopefully this wont be needed as
 # zsh-autosuggestions is designed to be unobtrusive)
 bindkey '^T' autosuggest-toggle
 # autosuggestions config
-AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=0'
+AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=8'
+
 # FIX TMUX
-alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=rxvt-unicode-256color tmux"
 # Default VIM and better 'cd'
 export EDITOR="vim"
 bindkey -v

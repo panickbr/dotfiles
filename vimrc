@@ -59,6 +59,10 @@ NeoBundle 'vim-scripts/TaskList.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'majutsushi/tagbar'
+NeoBundle 'twerth/ir_black'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'tir_black'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
 
 " Required:
 call neobundle#end()
@@ -78,7 +82,7 @@ let NERDTreeHijackNetrw=1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme = 'solarized'
+" let g:airline_theme = 'solarized'
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
 let g:instant_markdown_autostart = 0
@@ -89,10 +93,11 @@ let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
 let g:unite_winheight = 10
 let g:NERDTreeRespectWildIgnore = 1
-let g:rainbow_ctermfgs = ['red', 'darkyellow', 'darkgreen', 'darkblue', 'magenta', 'darkmagenta', 'darkred']
-set t_Co=16
+let g:used_javascript_libs = 'angularjs, angularui, jasmine'
+" let g:rainbow_ctermfgs = ['red', 'darkyellow', 'darkgreen', 'darkblue', 'magenta', 'darkmagenta', 'darkred']
+" set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 " NeoComplete
 let g:acp_enableAtStartup = 0
@@ -162,7 +167,6 @@ set showmatch
 set autoindent
 set copyindent
 set pastetoggle=<F2>
-
 set shiftround
 
 " Interactions
@@ -201,6 +205,24 @@ if has("autocmd")
   au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile0/cursor_shape ibeam"
   au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile0/cursor_shape block"
   au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Profile0/cursor_shape block"
+endif
+
+" RXVT cursor shape
+if &term =~ 'rxvt'
+  if exists($TMUX)
+    let &t_SI = "\<Esc>Ptmux;\<Esc>[4 q"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>[2 q"
+  else
+    " solid underscore
+    let &t_SI .= "\<Esc>[4 q"
+    " solid block
+    let &t_EI .= "\<Esc>[2 q"
+    " 1 or 0 -> blinking block
+    " 3 -> blinking underscore
+    " Recent versions of xterm (282 or above) also support
+    " 5 -> blinking vertical bar
+    " 6 -> solid vertical bar
+  endif
 endif
 
 " Remaps
